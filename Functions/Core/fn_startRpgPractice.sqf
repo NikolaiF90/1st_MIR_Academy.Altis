@@ -1,0 +1,3 @@
+private _heli0Data = [[RPGPractice_Heli0SpawnPos select 0, RPGPractice_Heli0SpawnPos select 1, 200], 90, "O_Heli_Light_02_unarmed_F", east] call BIS_fnc_spawnVehicle;
+private _heli1Data = [[RPGPractice_Heli1SpawnPos select 0, RPGPractice_Heli1SpawnPos select 1, 200], 90, "O_Heli_Light_02_unarmed_F", east] call BIS_fnc_spawnVehicle;
+private _heli2Data = [[RPGPractice_Heli2SpawnPos select 0, RPGPractice_Heli2SpawnPos select 1, 200], 90, "O_Heli_Light_02_unarmed_F", east] call BIS_fnc_spawnVehicle;
