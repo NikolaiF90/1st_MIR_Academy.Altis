@@ -6,6 +6,7 @@ if (_initialized) exitWith {};
 
 _handler setVariable ["VehicleMaxLifetime", 100, true];
 _handler setVariable ["EnemySpawnChance", 30, true];
+_handler setVariable ["SpawnInterval", [5,20], true];
 
 private _legalItems = 
 [
@@ -65,7 +66,7 @@ private _allEnemy = "getNumber (_x >> 'scope') >= 2 AND getText (_x >> 'faction'
 private _enemyClasses = _allEnemy apply {configName _x};
 _handler setVariable ["EnemyClasses", _enemyClasses, true];
 
-private _allVehicles = "getNumber (_x >> 'scope') >= 2 AND getText (_x >> 'faction') isEqualTo 'CIV_F' AND getText (_x >> 'vehicleClass') isEqualTo 'Car'" configClasses (configfile >> "CfgVehicles");
+private _allVehicles = "getNumber (_x >> 'scope') >= 2 AND getText (_x >> 'faction') isEqualTo 'CIV_F' AND getText (_x >> 'vehicleClass') isEqualTo 'Car' AND !(getText (_x >> 'DLC') isEqualTo 'KART')" configClasses (configfile >> "CfgVehicles");
 private _vehicleClasses = _allVehicles apply {configName _x};
 _handler setVariable ["VehicleClasses", _vehicleClasses, true];
 

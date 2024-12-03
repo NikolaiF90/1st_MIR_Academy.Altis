@@ -16,7 +16,7 @@
 
 params ["_debugOn", "_fileName", "_text", "_visibleInGame", "_saveToPlayer"];
 
-if (typeName _debugOn != "BOOL") exitWith { diag_log "F90Debug: (ERROR) F90_fnc_debug only accept boolean as the first parameters." };
+if (typeName _debugOn != "BOOL") exitWith { diag_log "F90Debug: (ERROR) F90_fnc_Debug only accept boolean as the first parameters." };
 if (isNil {_fileName}) then {_fileName = "DEBUG";} else { if (_fileName isEqualTo "" || _fileName isEqualTo " ") then {_fileName = "DEBUG"};};
 if (isNil {_text}) then {_text = "Debug Marker"};
 if (isNil {_visibleInGame}) then { _visibleInGame = false };

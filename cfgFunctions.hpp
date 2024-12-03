@@ -4,6 +4,7 @@ class F90
     {
         file = "Functions\Core";
         class AssignAsContainer {};
+        class CloseDialog {};
         class makeRespawnable {};
         class moveOut {};
         class startRpgPractice {};
@@ -18,6 +19,7 @@ class F90
     class Init 
     {
         file = "Functions\Init";
+        class InitAO {};
         class initHeadless {};
         class initHeadlessVariables {};
         class initPlayer {};
@@ -40,13 +42,25 @@ class F90
         class startRoadblock {};
         class vehicleHandler {};
     };
+    class Survival 
+    {
+        file = "Functions\Survival";
+        class AssignAsCoffeeMachine {};
+        class AssignAsStove {};
+        class InitSurvival {};
+        class PrepareFood {};
+    };
     class Utils
     {
         file = "Functions\Utils";
         class addAction {};
-        class addActionX {};
-        class debug {};
+        class addActionX {};     
+        class CreateAO {};
+        class Debug {};
+        class GetGroupList {};
         class globalExecute {};
+        class PopulateListBox {};
         class respawnVehicle {};
+        class TeleportObject {};
     };
 };

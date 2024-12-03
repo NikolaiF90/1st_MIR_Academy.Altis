@@ -1,11 +1,14 @@
+#include "Dialog\defines.hpp"
+#include "Dialog\dialog.hpp"
+
 author			= "1st MIR HQ";
 onLoadName		= "1st MIR Academy";
 onLoadMission	= "1 peluru untuk musuh, selebihnya untuk pengkhianat negara";
-loadScreen		= "media\Welcome.paa";
+loadScreen		= "Pictures\Welcome.paa";
 
 class Header
 {
-	gameType = "Coop";	// Game type
+	gameType = "RPG";	// Game type
 	minPlayers =  1;	// minimum number of players the mission supports
 	maxPlayers = 32;	// maximum number of players the mission supports
 };

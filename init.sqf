@@ -12,7 +12,7 @@ if (hasInterface) then
     [] call F90_fnc_initPlayer;
 };
 
-if (!isServer && !hasInterface) then 
+if (!isDedicated && !hasInterface) then 
 {
     [] call F90_fnc_initHeadless;
 }

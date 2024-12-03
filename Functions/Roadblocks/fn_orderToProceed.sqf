@@ -22,7 +22,8 @@ if (_driverOrPassengerDead) exitWith {["The driver or one of the passengers is n
 _target setVariable ["PassInspection", true, true];
 _target setVariable ["Lifetime", 0, true];
 
-private _despawnPos = getMarkerPos "rbDespawn_01";
+private _despawnPoint =  _handler getVariable "DespawnPoint";
+private _despawnPos = getMarkerPos _despawnPoint;
 _target doMove _despawnPos;
 
 [

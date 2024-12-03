@@ -3,15 +3,31 @@ Headless_Client1Present = if (isNil "hc_1") then {false} else {true};
 
 [[], "F90_fnc_initHeadlessVariables", 0] call F90_fnc_executeServer;
 
-["startRoadblock", rbBoard, "Start Roadblock", 
-{
-    [[RoadblockHandler], "F90_fnc_startRoadblock", 1] call F90_fnc_executeServer;
-}] call F90_fnc_addAction;
+["Initialize", [true]] call BIS_fnc_dynamicGroups;
 
-["endRoadblock", rbBoard, "Off Duty", 
+["startRoadblock", RbBoard_0, "Start Roadblock", 
 {
-    [[RoadblockHandler], "F90_fnc_endRoadblock", 1] call F90_fnc_executeServer;
-}] call F90_fnc_addAction;
+    params ["_target", "_player", "_args"];
+    [[_player, _args, "rbSpawnA_0", "rbSpawnA_1", "rbWpA_0", "rbDespawnA_0"], "F90_fnc_startRoadblock", 1] call F90_fnc_executeServer;
+}, RoadblockHandler_0] call F90_fnc_addAction;
+
+["endRoadblock", RbBoard_0, "Off Duty", 
+{
+    params ["_target", "_player", "_args"];
+    [[_player, _args], "F90_fnc_endRoadblock", 1] call F90_fnc_executeServer;
+}, RoadblockHandler_0] call F90_fnc_addAction;
+
+["startRoadblock", RbBoard_1, "Start Roadblock", 
+{
+    params ["_target", "_player", "_args"];
+    [[_player, _args, "rbSpawnB_0", "rbSpawnB_1", "rbWpB_0", "rbDespawnB_0"], "F90_fnc_startRoadblock", 1] call F90_fnc_executeServer;
+}, RoadblockHandler_1] call F90_fnc_addAction;
+
+["endRoadblock", RbBoard_1, "Off Duty", 
+{
+    params ["_target", "_player", "_args"];
+    [[_player, _args], "F90_fnc_endRoadblock", 1] call F90_fnc_executeServer;
+}, RoadblockHandler_1] call F90_fnc_addAction;
 
 ["startRpgPractice", aagPracticeSpawner, "Start RPG Practice", 
 {
@@ -46,9 +62,3 @@ Headless_Client1Present = if (isNil "hc_1") then {false} else {true};
 {
     [_x, 10] call F90_fnc_makeRespawnable;
 } forEach ((getMissionLayerEntities "Vehicles_1stMIR") select 0);
-
-private _flag01 = "Flag_AAF_F" createVehicle [2175.1,5740.76,5.589];
-private _flag02 = "Flag_AAF_F" createVehicle [2176.04,5740.58,5.587];
-
-_flag01 setFlagTexture "\media\Flag_Malaysia.paa";
-_flag02 setFlagTexture "\media\Flag_MIR.paa";

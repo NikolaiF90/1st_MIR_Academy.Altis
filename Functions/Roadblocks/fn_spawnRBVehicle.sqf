@@ -5,8 +5,8 @@ private _uniqueID02 = [10000, 99999] call BIS_fnc_randomInt;
 
 private _vehicleClasses = _handler getVariable "VehicleClasses";
 private _vehClass = selectRandom _vehicleClasses;
-private _number = [1,2] call BIS_fnc_randomInt;
-private _spawnMarker = format ["rbSpawn_0%1", _number];
+private _spawnPos = [_handler getVariable "Spawn1", _handler getVariable "Spawn2"];
+private _spawnMarker = selectRandom _spawnPos;
 private _spawnPos = getMarkerPos _spawnMarker;
 private _car = _vehClass createVehicle _spawnPos;
 [_car, _handler] call F90_fnc_setVehicleCargo;
@@ -100,7 +100,8 @@ _handler setVariable ["SpawnedVehicles", _spawnedVehicles, true];
     [[_target, _player, _handler], "F90_fnc_OrderGetOut", 1] call F90_fnc_executeServer;
 }, _handler] call F90_fnc_addAction;
 
-private _des1 = getMarkerPos "rbWP_01";
+private _stopPoint = _handler getVariable "StopPoint";
+private _des1 = getMarkerPos _stopPoint;
 
 _car doMove _des1;
 
