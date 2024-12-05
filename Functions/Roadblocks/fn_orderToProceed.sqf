@@ -1,8 +1,5 @@
 params ["_target", "_player", "_handler"];
 
-private _passInspection = _target getVariable "PassInspection";
-if (_passInspection) exitWith {["The vehicle has been verified to pass the inspection!"] remoteExec ["hint", _player]};
-
 private _arrestData = _target getVariable "ArrestData";
 private _driverOrPassengerArrested =
 {
@@ -20,16 +17,18 @@ private _driverOrPassengerDead =
 if (_driverOrPassengerDead) exitWith {["The driver or one of the passengers is not alive anymore. Can't proceed!"] remoteExec ["hint", _player]};
 
 _target setVariable ["PassInspection", true, true];
-_target setVariable ["Lifetime", 0, true];
+_target setVariable ["VehicleLifetime", 0, true];
 
 private _despawnPoint =  _handler getVariable "DespawnPoint";
 private _despawnPos = getMarkerPos _despawnPoint;
 _target doMove _despawnPos;
 
+private _passInspection = _target getVariable "PassInspection";
+if (_passInspection) exitWith {["The vehicle has been verified to pass the inspection!"] remoteExec ["hint", _player]};
 [
     {
         params ["_car"];
         [_car] call F90_fnc_deleteRBVehicles;
     },
     [_target], 20
-] call CBA_fnc_waitAndExecute;
+] call cba_fnc_waitAndExecute;

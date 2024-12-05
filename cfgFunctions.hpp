@@ -3,10 +3,11 @@ class F90
     class Core 
     {
         file = "Functions\Core";
-        class AssignAsContainer {};
         class CloseDialog {};
         class makeRespawnable {};
         class moveOut {};
+        class OrderStop {};
+        class SetStopMoving {};
         class startRpgPractice {};
         class startRiflePractice {};
     };
@@ -54,7 +55,10 @@ class F90
     {
         file = "Functions\Utils";
         class addAction {};
-        class addActionX {};     
+        class addActionX {};   
+        class AddSmokeAction {};
+        class AssignAsContainer {};
+        class ChangeSide {};  
         class CreateAO {};
         class Debug {};
         class GetGroupList {};

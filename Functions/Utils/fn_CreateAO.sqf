@@ -1,3 +1,21 @@
+/*
+    Author: PrinceF90
+
+    Description:
+        This function spawns a specified number of enemy groups around a given object, creates associated markers, and sets up a detection trigger to manage the area of operations (AO).
+
+    Parameter(s):
+        _aoName - The name of the area of operations. [STRING]
+        _object - The central object around which enemy groups will be spawned. [OBJECT]
+        _size - (Optional, default 0:200 1:200)The size of the area of operations. [ARRAY]
+        _groupCount - (Optional, default 0:2 1:5 or -1)The array of enemy groups to spawn from min to max. [ARRAY or NUMBER]
+        _faction - (Optional, default "OPF_F")The faction of the enemy groups to spawn. [STRING]
+        _skillRange - (Optional, default 0:0.2 1:0.5)The skill range of the spawned enemy groups. [ARRAY]
+
+    Returns: 
+        None - The function does not return a value.
+*/
+
 params ["_aoName", "_object", "_size", "_groupCount", "_faction", "_skillRange"];
 
 if (isNil "_groupCount") then 
@@ -5,7 +23,12 @@ if (isNil "_groupCount") then
     _groupCount = [2, 5] call BIS_fnc_randomInt;
 } else 
 {
-    if (_groupCount == -1) then { _groupCount = [2, 5] call BIS_fnc_randomInt};
+    if (_groupCount == -1) then { _groupCount = [2, 5]};
+};
+
+if (typeName _groupCount isEqualTo "ARRAY") then 
+{
+    _groupCount = _groupCount call BIS_fnc_randomInt;
 };
 
 if (isNil "_faction") then {_faction = "OPF_F"};
@@ -13,6 +36,7 @@ private _groupData = [_faction, "East"] call F90_fnc_GetGroupList;
 
 if (isNil "_skillRange") then {_skillRange = [0.2, 0.5]};
 
+if (isNil "_size") then {_size = [200, 200]};
 private _patrolRadius = (_size select 0) / 2;
 
 private _fn_SpawnGroup = 

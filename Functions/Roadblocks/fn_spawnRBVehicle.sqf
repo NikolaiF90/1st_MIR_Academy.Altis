@@ -15,7 +15,7 @@ private _spawnedVehicleCounts = _handler getVariable "SpawnedVehicleCounts";
 _spawnedVehicleCounts = _spawnedVehicleCounts + 1;
 _handler setVariable ["SpawnedVehicleCounts", _spawnedVehicleCounts, true];
 
-_car setVariable ["Lifetime", 0, true];
+_car setVariable ["VehicleLifetime", 0, true];
 _car setVariable ["MaxLifetime", _handler getVariable "VehicleMaxLifetime", true];
 _car setVariable ["SpawnPos", _spawnPos, true];
 
@@ -33,7 +33,7 @@ private _passengerCounts = if (_emptySeatCounts <= 1) then
     [1, _emptySeatCounts] call BIS_fnc_randomInt
 };
 
-private _side = if ((_handler getVariable "EnemySpawnChance") >= ([0, 100] call BIS_fnc_randomInt)) then 
+private _side = if (([0, 100] call BIS_fnc_randomInt) < (_handler getVariable "EnemySpawnChance")) then 
 {
     east
 } else 
@@ -100,11 +100,9 @@ _handler setVariable ["SpawnedVehicles", _spawnedVehicles, true];
     [[_target, _player, _handler], "F90_fnc_OrderGetOut", 1] call F90_fnc_executeServer;
 }, _handler] call F90_fnc_addAction;
 
-private _stopPoint = _handler getVariable "StopPoint";
-private _des1 = getMarkerPos _stopPoint;
+private _despawnPoint = _handler getVariable "DespawnPoint";
+private _des1 = getMarkerPos _despawnPoint;
 
 _car doMove _des1;
-
-_car setVariable ["DestinationPos", _des1, true];
 
 [_car, _handler] spawn F90_fnc_vehicleHandler;

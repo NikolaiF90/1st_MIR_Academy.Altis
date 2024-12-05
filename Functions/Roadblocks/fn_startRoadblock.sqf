@@ -1,4 +1,4 @@
-params ["_player", "_handler", "_spawn1", "_spawn2", "_stopPoint", "_despawnPoint"];
+params ["_player", "_handler", "_spawn1", "_spawn2", "_despawnPoint"];
 
 private _hasStarted = _handler getVariable ["RoadblockStarted", false];
 if (_hasStarted) exitWith {["The roadblock has already started!"] remoteExec ["hint", _player]};
@@ -9,7 +9,6 @@ if (_hasStarted) exitWith {["The roadblock has already started!"] remoteExec ["h
 
 _handler setVariable ["Spawn1", _spawn1, true];
 _handler setVariable ["Spawn2", _spawn2, true];
-_handler setVariable ["StopPoint", _stopPoint, true];
 _handler setVariable ["DespawnPoint", _despawnPoint, true];
 
 _handler setVariable ["RoadblockStarted", true, true];

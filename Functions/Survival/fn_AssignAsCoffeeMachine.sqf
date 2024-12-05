@@ -1,3 +1,18 @@
+/*
+    Author: PrinceF90
+
+    Description:
+        This function transform an object into a coffee maching, allowing players to make drinks and access the inventory of the object.
+
+    Parameter(s):
+        _coffeeMachine - The object that players will interact with. [OBJECT]
+        _containerBox - The container that holds the prepared drinks. [OBJECT]
+        _cookActionTitle - The title for making drinks action in the action menu. [STRING]
+        _inventoryItemTitle - The title for the inventory access action in the action menu. [STRING]
+
+    Returns: 
+        None - The function does not return a value.
+*/
 params ["_coffeeMachine", "_containerBox", "_cookActionTitle", "_inventoryItemTitle"];
 
 private _initialized = SurvivalHandler getVariable ["Initialized", false];

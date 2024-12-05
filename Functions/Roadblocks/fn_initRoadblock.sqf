@@ -4,8 +4,8 @@ private _initialized = _handler getVariable ["Initialized", false];
 
 if (_initialized) exitWith {};
 
-_handler setVariable ["VehicleMaxLifetime", 100, true];
-_handler setVariable ["EnemySpawnChance", 30, true];
+_handler setVariable ["VehicleMaxLifetime", 120, true];
+_handler setVariable ["EnemySpawnChance", 20, true];
 _handler setVariable ["SpawnInterval", [5,20], true];
 
 private _legalItems = 

@@ -1,10 +1,8 @@
 params ["_vehicle", "_handler"];
 
 private _maxLifetime = _vehicle getVariable "MaxLifetime";
-private _spawnPos = _vehicle getVariable "SpawnPos";
-private _destinationPos = _vehicle getVariable "DestinationPos";
-private _destination2 = getMarkerPos "rbWP_02";
-private _passengers = _vehicle getVariable "Passengers";
+private _despawnPoint = _handler getVariable "DespawnPoint";
+private _despawnPosition = getMarkerPos _despawnPoint;
 
 private _fn_decreaseSpawnedVehicleCounts = 
 {
@@ -18,6 +16,7 @@ private _fn_decreaseSpawnedVehicleCounts =
 
 while {true} do 
 {
+    sleep 5;
     if (isNull _vehicle) exitWith 
     {
         [_handler] call _fn_decreaseSpawnedVehicleCounts;
@@ -28,23 +27,30 @@ while {true} do
         [_handler] call _fn_decreaseSpawnedVehicleCounts;
     };
 
-    private _lifetime = _vehicle getVariable "Lifetime";
-    private _vehiclePosition = position _vehicle;
+    private _lifetime = _vehicle getVariable "VehicleLifetime";
+    private _vehiclePos = position _vehicle;
 
-    // Destroy if not moving and lifetime reached
-    if (_lifetime >= _maxLifetime && (_vehiclePosition distance _spawnPos <= 10)) exitWith 
+    // Increase lifetime if far from players or when not being stopped
+    private _allPlayers = call BIS_fnc_listPlayers;
+    if (_lifetime != -1 || _allPlayers inAreaArray [getPosWorld _vehicle, 100, 100] isEqualTo []) then 
+    {
+        _lifetime = _lifetime + 5;
+        _vehicle setVariable ["VehicleLifetime", _lifetime, true];
+    };
+
+    // Despawn if lifetime reached
+    if (_lifetime >= _maxLifetime) then 
     {
         [_vehicle] call F90_fnc_deleteRBVehicles;
     };
-    sleep 5;
 
-    // Increase lifetime if not moving or far from destination
-    if (_vehiclePosition distance _spawnPos <= 10 || _vehiclePosition distance _destinationPos > 20) then 
+    // Despawn if reached destination
+    if ((_vehiclePos distance _despawnPosition) <= 20) then 
     {
-        _lifetime = _lifetime + 5;
-        _vehicle setVariable ["Lifetime", _lifetime, true];
+        [_vehicle] call F90_fnc_deleteRBVehicles;
     };
 
+    // Remove any null entry
     private _spawnedVehicles = _handler getVariable "SpawnedVehicles";
     _spawnedVehicles = _spawnedVehicles - [objNull];
     _handler setVariable ["SpawnedVehicles", _spawnedVehicles, true];

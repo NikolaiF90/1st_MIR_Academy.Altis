@@ -1,3 +1,18 @@
+/*
+    Author: PrinceF90
+
+    Description:
+        This function transform an object into a stove, allowing players to cook food and access the inventory of the stove.
+
+    Parameter(s):
+        _stove - The object to assign as stove. [OBJECT]
+        _containerBox - The container that holds cooked foods. [OBJECT]
+        _cookActionTitle - The title for the cooking action in the action menu. [STRING]
+        _inventoryItemTitle - The title for the inventory access action in the action menu. [STRING]
+
+    Returns: 
+        None - The function does not return a value.
+*/
 params ["_stove", "_containerBox", "_cookActionTitle", "_inventoryItemTitle"];
 
 private _initialized = SurvivalHandler getVariable ["Initialized", false];

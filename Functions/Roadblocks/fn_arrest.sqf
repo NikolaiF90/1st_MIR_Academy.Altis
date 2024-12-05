@@ -47,7 +47,7 @@ if (_isDriver) then
 private _arrestData = _vehicle getVariable "ArrestData";
 _arrestData set [_passengerID, true];
 
-if ((_vehicle getVariable "Lifetime") > 0) then 
+if ((_vehicle getVariable "VehicleLifetime") > 0) then 
 {
-    _vehicle setVariable ["Lifetime", 0, true];
+    _vehicle setVariable ["VehicleLifetime", 0, true];
 };

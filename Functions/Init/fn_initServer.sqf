@@ -8,7 +8,7 @@ Headless_Client1Present = if (isNil "hc_1") then {false} else {true};
 ["startRoadblock", RbBoard_0, "Start Roadblock", 
 {
     params ["_target", "_player", "_args"];
-    [[_player, _args, "rbSpawnA_0", "rbSpawnA_1", "rbWpA_0", "rbDespawnA_0"], "F90_fnc_startRoadblock", 1] call F90_fnc_executeServer;
+    [[_player, _args, "rbSpawnA_0", "rbSpawnA_1", "rbDespawnA_0"], "F90_fnc_startRoadblock", 1] call F90_fnc_executeServer;
 }, RoadblockHandler_0] call F90_fnc_addAction;
 
 ["endRoadblock", RbBoard_0, "Off Duty", 
@@ -20,7 +20,7 @@ Headless_Client1Present = if (isNil "hc_1") then {false} else {true};
 ["startRoadblock", RbBoard_1, "Start Roadblock", 
 {
     params ["_target", "_player", "_args"];
-    [[_player, _args, "rbSpawnB_0", "rbSpawnB_1", "rbWpB_0", "rbDespawnB_0"], "F90_fnc_startRoadblock", 1] call F90_fnc_executeServer;
+    [[_player, _args, "rbSpawnB_0", "rbSpawnB_1", "rbDespawnB_0"], "F90_fnc_startRoadblock", 1] call F90_fnc_executeServer;
 }, RoadblockHandler_1] call F90_fnc_addAction;
 
 ["endRoadblock", RbBoard_1, "Off Duty", 
